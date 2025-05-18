@@ -5,15 +5,23 @@ using namespace std;
 const int MAX=200000;
 struct Node{
     int val;
-    int min,max;
+    int l, r;
     Node *left, *right;
-    Node(int l, int r): l(l), r(r), val(0), left(nullptr), right(nullptr) {}
+    Node(int l_, int r_) {
+        l = l_;
+        r = r_;
+        val = 0;
+        left = nullptr;
+        right = nullptr;
+    }
 };
 
 int main(){
     int testcase;
     ifstream in("testcase1.txt");
     ofstream out("output1.txt");
+    in>>testcase;
+    while(testcase--){
     int n,m;
     in>>n>>m;
     int size=n+m;
@@ -61,7 +69,6 @@ int main(){
         int target=pos[a];
         Node* curr=root;
         while(curr->l!=curr->r){
-            curr->val++;
             int mid=(curr->l+curr->r)/2;
             if(target<=mid){
                 curr=curr->left;
@@ -77,7 +84,7 @@ int main(){
         while(curr->l!=curr->r){
             curr->val--;
             int mid=(curr->l+curr->r)/2;
-            if(pos[x]<=mid){
+            if(pos[a]<=mid){
                 curr=curr->left;
             }else{
                 curr=curr->right;
@@ -92,13 +99,14 @@ int main(){
             curr->val++;
             int mid=(curr->l+curr->r)/2;
             if(pos[a]<=mid){
-                curr=curr->lest;
+                curr=curr->left;
             }else{
                 curr=curr->right;
             }
         }
-        cur->val++;
+        curr->val++;
     }
-
+    out<<endl;
+}
     return 0;
 }

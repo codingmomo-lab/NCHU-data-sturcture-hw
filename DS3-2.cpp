@@ -52,8 +52,8 @@ int main(){
     while(testcase--){
         int order;
         in>>order;
-        int inorder[order];
-        int postorder[order];
+        int* inorder = new int[order];
+        int* postorder = new int[order];
         for(int i=0;i<order;i++){
             in>>inorder[i];
         }
@@ -65,6 +65,8 @@ int main(){
         Node* root=buildTree(inorder,postorder,0,order-1,postindex);
         preorderPrint(root,out);
         out<<endl;
+        delete[] inorder;
+        delete[] postorder;
     }
     return 0;
     
